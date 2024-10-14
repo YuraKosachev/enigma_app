@@ -1,18 +1,17 @@
 package Models.Responses;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class MessageResponse {
     private final String message;
-    private final LocalDateTime date;
+    private final LocalDate date;
 
-    public MessageResponse(String message, LocalDateTime date){
+    public MessageResponse(String message, LocalDate date){
         this.date = date;
         this.message = message;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 

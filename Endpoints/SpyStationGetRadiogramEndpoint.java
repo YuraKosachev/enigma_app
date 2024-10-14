@@ -1,17 +1,20 @@
 package Endpoints;
 
+import Adapters.LocalDateTypeAdapter;
 import Constants.EndpointConstants;
 import Constants.MethodConstants;
 import Exceptions.ApiServiceException;
-import Extensions.JsonConverter;
+import Extensions.Converter;
 import Interfaces.EnigmaRadiogramEndpoint;
-import Models.RequestParam;
 import Models.Requests.MessageRequest;
 import Models.Responses.MessageResponse;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 public class SpyStationGetRadiogramEndpoint extends SpyDataClient<MessageRequest, MessageResponse>
         implements EnigmaRadiogramEndpoint {
@@ -27,9 +30,6 @@ public class SpyStationGetRadiogramEndpoint extends SpyDataClient<MessageRequest
 
     @Override
     protected MessageResponse Converter(String body) {
-        JsonConverter converter = new JsonConverter(body);
-        String message = converter.getValue("message");
-        LocalDateTime date = LocalDateTime.parse(converter.getValue("date"));
-        return new MessageResponse(message, date);
+        return Converter.Deserialize(body, MessageResponse.class);
     }
 }
