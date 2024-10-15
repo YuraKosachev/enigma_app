@@ -38,13 +38,14 @@ public class EnigmaApp implements Interfaces.App {
 
             AppLogger.info("Decrypting proccess...");
             String decrypt = cryptoMachine.decode(radiogram.getMessage(), radiogram.getDate());
-
+            AppLogger.info("Decrypted message -> " + decrypt);
             AppLogger.info("Send decrypt result to validation");
             ValidationRequest request = new ValidationRequest(radiogram.getMessage(), decrypt);
             ValidationResponse validation = spyStationValidationEndpoint.validate(request);
 
             if (validation.isValid()) {
                 AppLogger.success(validation.getMessage());
+                AppLogger.success("\n" + validation.getAscii());
                 break;
             }
 
