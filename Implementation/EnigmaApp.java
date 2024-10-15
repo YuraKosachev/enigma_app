@@ -34,7 +34,7 @@ public class EnigmaApp implements Interfaces.App {
             AppLogger.info("Send request to spy station");
             MessageResponse radiogram = spyStationRadiogramEndpoint.getRadiogram();
 
-            AppLogger.info("Radiogram message is " + radiogram.getMessage());
+            AppLogger.info("Radiogram message - " + radiogram.getMessage());
 
             AppLogger.info("Decrypting proccess...");
             String decrypt = cryptoMachine.decode(radiogram.getMessage(), radiogram.getDate());
