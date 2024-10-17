@@ -7,7 +7,7 @@ import CryptoMashine.EnigmaMachine;
 import Interfaces.EnigmaRadiogramEndpoint;
 import Interfaces.EnigmaValidationEndpoint;
 
-public class InstanceFabric {
+public class InstanceFactory {
 
     public static CryptoMachine getCryptoMachineInstance() {
         return new EnigmaMachine();
